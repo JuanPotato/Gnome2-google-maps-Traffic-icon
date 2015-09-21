@@ -4,16 +4,22 @@ import threading, multiprocessing, time, gtk, json, requests
 
 def calculate(origins, destinations, mode="driving", language="en-US"):
 	payload = {
-		'origins': origins, 
+		'departure_time': time.time() + 5
 		'destinations': destinations,
+		'language': language,
+		'origins': origins,
 		'mode': mode,
-		'language': language
+		'signature': "", #ADD SIGNATURE IN THE QUOTES
+		'client': "", #ADD CLIENT ID THING IN THE QUOTES
 		}
 
 	r = requests.get("https://maps.googleapis.com/maps/api/distancematrix/json", params=payload).json()
 	
 	try:
-		return r["rows"][0]["elements"][0]["duration"]
+		if "duration_in_traffic" in r["rows"][0]["elements"][0]:
+			return r["rows"][0]["elements"][0]["duration"]
+		else:
+			return r["rows"][0]["elements"][0]["duration_in_traffic"]
 	except:
 		return
 
