@@ -4,7 +4,7 @@ import threading, multiprocessing, time, gtk, json, requests
 
 def calculate(origins, destinations, mode="driving", language="en-US"):
 	payload = {
-		'departure_time': time.time() + 5
+		'departure_time': time.time() + 5,
 		'destinations': destinations,
 		'language': language,
 		'origins': origins,
