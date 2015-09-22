@@ -10,7 +10,7 @@ def calculate(origins, destinations, mode="driving", language="en-US"):
 		'origins': origins,
 		'mode': mode,
 		'signature': "", #ADD SIGNATURE IN THE QUOTES
-		'client': "", #ADD CLIENT ID THING IN THE QUOTES
+		'client': "" #ADD CLIENT ID THING IN THE QUOTES
 		}
 
 	r = requests.get("https://maps.googleapis.com/maps/api/distancematrix/json", params=payload).json()
